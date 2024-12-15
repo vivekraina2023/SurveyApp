@@ -1,0 +1,55 @@
+/* Add this to App.css */
+.survey-designer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.question-designer {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.question-designer form > div {
+  margin-bottom: 15px;
+}
+
+.question-designer label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.question-designer input[type="text"],
+.question-designer select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.question-preview {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.question {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+button {
+  padding: 8px 16px;
+  margin: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

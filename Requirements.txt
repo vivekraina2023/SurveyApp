@@ -1,0 +1,23 @@
+
+Tech stack
+- Cursor / Claude Sonnet 3.5
+- MERN (Mongo, Express, React, NodeJS)
+Cloudflare Pages / domain registrar (my first time with this!) - Google App Engine (GAE)
+Firebase Auth
+- GitHub
+I
+
+Product Requirements
+- Login
+- Create survey
+Should allow for a variety of question types
+- Send survey link
+Collect responses
+Analytics dashboard
+- Should account for custom survey structure
+
+
+
+I am building a survey design tool. Please create a component that will be called Survey Designer. It should include new
+Question Designer and a Question Preview components in it. The QuestionDesigner component should have 4 options for
+question types and then allow the user to add/remove options and add the question to the survey (so that it appears in the QuestionPreview). The 4 initial question types will be multiple choice, checkbox list, short text, long text.
