@@ -21,3 +21,5 @@ Analytics dashboard
 I am building a survey design tool. Please create a component that will be called Survey Designer. It should include new
 Question Designer and a Question Preview components in it. The QuestionDesigner component should have 4 options for
 question types and then allow the user to add/remove options and add the question to the survey (so that it appears in the QuestionPreview). The 4 initial question types will be multiple choice, checkbox list, short text, long text.
+
+

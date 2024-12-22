@@ -1,7 +1,7 @@
-// components/QuestionPreview.js
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function QuestionPreview({ questions }) {
+const QuestionPreview = ({ questions }) => {
   const renderQuestion = (question, index) => {
     switch (question.type) {
       case 'multiple-choice':
@@ -86,6 +86,16 @@ function QuestionPreview({ questions }) {
       )}
     </div>
   );
-}
+};
 
-export default QuestionPreview;
+QuestionPreview.propTypes = {
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      options: PropTypes.arrayOf(PropTypes.string)
+    })
+  ).isRequired
+};
+
+export default QuestionPreview; 

@@ -1,8 +1,8 @@
-// components/QuestionDesigner.js
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Plus, Minus, Save } from 'lucide-react';
 
-function QuestionDesigner({ onAddQuestion }) {
+const QuestionDesigner = ({ onAddQuestion }) => {
   const [questionType, setQuestionType] = useState('multiple-choice');
   const [questionText, setQuestionText] = useState('');
   const [options, setOptions] = useState(['']);
@@ -34,7 +34,9 @@ function QuestionDesigner({ onAddQuestion }) {
     const question = {
       type: questionType,
       text: questionText,
-      options: ['multiple-choice', 'checkbox'].includes(questionType) ? options.filter(opt => opt.trim() !== '') : [],
+      options: ['multiple-choice', 'checkbox'].includes(questionType) 
+        ? options.filter(opt => opt.trim() !== '') 
+        : [],
     };
     onAddQuestion(question);
     setQuestionText('');
@@ -121,6 +123,10 @@ function QuestionDesigner({ onAddQuestion }) {
       </form>
     </div>
   );
-}
+};
 
-export default QuestionDesigner;
+QuestionDesigner.propTypes = {
+  onAddQuestion: PropTypes.func.isRequired,
+};
+
+export default QuestionDesigner; 
