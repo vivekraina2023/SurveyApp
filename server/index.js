@@ -7,11 +7,28 @@ require('dotenv').config();
 
 const app = express();
 
+// Trust proxy headers
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
-  credentials: true
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// HTTP to HTTPS redirect middleware for production
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      const host = process.env.DOMAIN || req.hostname;
+      const httpsUrl = `https://${host}${req.url}`;
+      return res.status(301).redirect(httpsUrl);
+    }
+    next();
+  });
+}
 
 app.use(express.json());
 app.use(session({
@@ -20,8 +37,12 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  }
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    httpOnly: true,
+    domain: process.env.NODE_ENV === 'production' ? '.priyaraina.com' : undefined
+  },
+  proxy: true // Add this if you're behind a proxy
 }));
 
 app.use(passport.initialize());
@@ -31,7 +52,9 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/google/callback",
+    callbackURL: process.env.NODE_ENV === 'production' 
+      ? `https://${process.env.DOMAIN}/auth/google/callback`
+      : "http://localhost:5000/auth/google/callback",
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log('Google auth callback received:', {
@@ -71,7 +94,6 @@ app.get('/auth/google/callback',
     res.redirect(`${process.env.CLIENT_URL}/survey-designer`);
   });
 
-
 app.get('/auth/logout', (req, res) => {
   req.logout((err) => {
     if (err) {
@@ -90,6 +112,7 @@ app.get('/auth/logout', (req, res) => {
 
 // Check auth status
 app.get('/auth/status', (req, res) => {
+  console.log('Auth status check received');
   if (!req.isAuthenticated()) {
     return res.status(401).json({
       isAuthenticated: false,
@@ -102,7 +125,8 @@ app.get('/auth/status', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+// Use environment port or default to 80
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
 });
