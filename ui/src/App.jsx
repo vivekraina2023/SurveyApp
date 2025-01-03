@@ -8,7 +8,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   const checkAuthStatus = () => {
-    fetch('http://localhost:5000/auth/status', {
+    fetch('https://api.priyaraina.com/auth/status', {
       credentials: 'include'
     })
       .then(res => res.json())
