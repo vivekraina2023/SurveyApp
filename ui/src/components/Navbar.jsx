@@ -6,7 +6,7 @@ const Navbar = ({ setIsAuthenticated }) => {
 
   const handleLogout = async () => {
     try {
-      await fetch('https://api.priyaraina.com/auth/logout', {
+      await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`, {
         method: 'GET',
         credentials: 'include'
       });

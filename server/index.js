@@ -4,6 +4,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
 require('dotenv').config();
+const chatService = require('./services/chatService');
 
 const app = express();
 
@@ -123,6 +124,24 @@ app.get('/auth/status', (req, res) => {
     isAuthenticated: req.isAuthenticated(),
     user: req.user
   });
+});
+
+// Chat endpoint
+app.post('/api/chat', async (req, res) => {
+  console.error('Vivek: chat mesage has been received');
+  try {
+    const { message } = req.body;
+    
+    if (!message) {
+      return res.status(400).json({ error: 'Message is required' });
+    }
+
+    const response = await chatService.processMessage(message);
+    res.json({ response });
+  } catch (error) {
+    console.error('Chat error:', error);
+    res.status(500).json({ error: 'Failed to process message' });
+  }
 });
 
 // Use environment port or default to 80

@@ -3,19 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [responseMessage, setResponseMessage] = useState('');
-
+  
   useEffect(() => {
-    // Fetch response message
-    fetch('https://api.priyaraina.com/')
-      .then(res => res.text())
-      .then(data => {
-        setResponseMessage(data);
-      })
-      .catch(err => console.error('Failed to fetch response:', err));
-
-    // Existing auth check
-    fetch('https://api.priyaraina.com/auth/status', {
+    
+    // Auth check
+    fetch(`${process.env.REACT_APP_API_URL}/auth/status`, {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -28,12 +20,11 @@ const Login = () => {
   }, [navigate]);
 
   const handleGoogleLogin = () => {
-    window.location.href = 'https://api.priyaraina.com/auth/google';
+    window.location.href = `${process.env.REACT_APP_API_URL}/auth/google`;
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
-     
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-lg">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
