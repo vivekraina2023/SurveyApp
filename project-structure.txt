@@ -1,0 +1,36 @@
+kafka-webflux-demo/
+├── producer-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/producer/
+│   │   │   │   ├── ProducerApplication.java
+│   │   │   │   ├── config/
+│   │   │   │   │   └── KafkaProducerConfig.java
+│   │   │   │   ├── controller/
+│   │   │   │   │   └── MessageController.java
+│   │   │   │   ├── model/
+│   │   │   │   │   └── Message.java
+│   │   │   │   └── service/
+│   │   │   │       └── KafkaProducerService.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   └── pom.xml
+│
+├── consumer-service/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/consumer/
+│   │   │   │   ├── ConsumerApplication.java
+│   │   │   │   ├── config/
+│   │   │   │   │   └── KafkaConsumerConfig.java
+│   │   │   │   ├── handler/
+│   │   │   │   │   └── MessageHandler.java
+│   │   │   │   ├── model/
+│   │   │   │   │   └── Message.java
+│   │   │   │   └── service/
+│   │   │   │       └── KafkaConsumerService.java
+│   │   │   └── resources/
+│   │   │       └── application.yml
+│   └── pom.xml
+│
+└── pom.xml 

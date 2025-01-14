@@ -38,3 +38,63 @@ Thumbs.db
 
 # Optional REPL history
 .node_repl_history ".env.production" 
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+.mtj.tmp/
+hs_err_pid*
+replay_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+
+# IDE - IntelliJ
+.idea/
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+# IDE - VS Code
+.vscode/
+.code-workspace
+
+# Spring Boot
+*.log
+logs/
+spring.log
+
+# OS specific
+.DS_Store
+Thumbs.db 
