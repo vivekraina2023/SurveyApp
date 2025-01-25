@@ -1,0 +1,2 @@
+-keep class com.yourapp.** { *; }
+-keepclassmembers class com.yourapp.** { *; } 

@@ -1,0 +1,20 @@
+android {
+    defaultConfig {
+        // ...
+        versionCode 2  // Increment this
+        versionName "1.1.0"  // Update version name
+    }
+    signingConfigs {
+        release {
+            storeFile file('my-release-key.keystore')
+            storePassword 'your-store-password'
+            keyAlias 'my-key-alias'
+            keyPassword 'your-key-password'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+} 
